@@ -30,24 +30,10 @@
       "notes": "Weekend early voting location"
     },
     {
-      "id": "fairfax-gov-center",
-      "name": "Fairfax County Government Center",
-      "address": "12000 Government Center Pkwy, Fairfax, VA 22035",
-      "county": "Fairfax County",
-      "hours": [
-        "Mon-Fri: 8am-4:30pm",
-        "Sun, July 19 & 26: 12pm-5pm",
-        "Sat, July 25 & Aug 1: 9am-5pm"
-      ],
-      "lat": 38.8513,
-      "lng": -77.2767,
-      "notes": "Main Fairfax County early voting location"
-    },
-    {
       "id": "mount-vernon-gov",
       "name": "Mount Vernon Governmental Center",
       "address": "2511 Parkers Ln, Alexandria, VA 22306",
-      "county": "Fairfax County",
+      "county": "Fairfax County (VA-08 portion)",
       "hours": [
         "Mon-Fri: 1pm-7pm",
         "Sun, July 19 & 26: 12pm-5pm",
@@ -55,21 +41,7 @@
       ],
       "lat": 38.7582,
       "lng": -77.0976,
-      "notes": "Fairfax County location in VA-08"
-    },
-    {
-      "id": "north-county-gov",
-      "name": "North County Governmental Center",
-      "address": "1801 Cameron Glen Dr, Reston, VA 20190",
-      "county": "Fairfax County",
-      "hours": [
-        "Mon-Fri: 1pm-7pm",
-        "Sun, July 19 & 26: 12pm-5pm",
-        "Sat, July 25 & Aug 1: 9am-5pm"
-      ],
-      "lat": 38.9586,
-      "lng": -77.3553,
-      "notes": "Northern Fairfax County location"
+      "notes": "Serves VA-08 residents in eastern Fairfax County"
     },
     {
       "id": "arlington-courthouse",
