@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - VA-08 Voting Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .stat-card {
+            background: white;
+            border: 2px solid black;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .event-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .event-item {
+            border-bottom: 1px solid #e5e5e5;
+            padding: 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.875rem;
+        }
+
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .event-name {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .event-time {
+            color: #666;
+            font-size: 0.75rem;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            background: black;
+            color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: white;
+            color: black;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: black;
+        }
+
+        .btn-secondary:hover {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-grid">
+                <div class="header-label">
+                    <span class="form-number">ANALYTICS</span>
+                    <span class="form-title">LOCAL TRACKING DASHBOARD</span>
+                </div>
+                <div class="header-date">
+                    <a href="index.html" style="color: white; text-decoration: underline;">← Back to Site</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-container">
+        <div class="control-buttons">
+            <button class="btn" onclick="refreshStats()">REFRESH DATA</button>
+            <button class="btn btn-secondary" onclick="exportStats()">EXPORT JSON</button>
+            <button class="btn btn-secondary" onclick="clearStats()">CLEAR DATA</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalPageViews">0</div>
+                <div class="stat-label">Total Page Views</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="totalEvents">0</div>
+                <div class="stat-label">Total Events</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="uniqueReferrers">0</div>
+                <div class="stat-label">Referrer Sources</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number" id="mobilePercent">0%</div>
+                <div class="stat-label">Mobile Traffic</div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <h2 style="margin-bottom: 1rem;">Top Events</h2>
+            <div id="topEvents"></div>
+        </div>
+
+        <div class="stat-card">
+            <h2 style="margin-bottom: 1rem;">Recent Activity</h2>
+            <div class="event-list" id="recentEvents">
+                <p style="color: #666; font-style: italic;">No events tracked yet. Visit the main site to generate data.</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <h2 style="margin-bottom: 1rem;">Referrer Sources</h2>
+            <div id="referrerList"></div>
+        </div>
+    </div>
+
+    <script src="analytics.js"></script>
+    <script>
+        function refreshStats() {
+            const data = window.Vote08Analytics.exportData();
+
+            // Total page views
+            document.getElementById('totalPageViews').textContent = data.pageViews.length;
+
+            // Total events
+            document.getElementById('totalEvents').textContent = data.events.length;
+
+            // Unique referrers
+            const uniqueReferrers = new Set(data.pageViews.map(pv => {
+                try {
+                    const url = new URL(pv.referrer);
+                    return url.hostname;
+                } catch {
+                    return pv.referrer;
+                }
+            }));
+            document.getElementById('uniqueReferrers').textContent = uniqueReferrers.size;
+
+            // Mobile percentage
+            const mobileViews = data.pageViews.filter(pv =>
+                pv.userAgent && /mobile|android|iphone|ipad|tablet/i.test(pv.userAgent)
+            ).length;
+            const mobilePercent = data.pageViews.length > 0
+                ? Math.round((mobileViews / data.pageViews.length) * 100)
+                : 0;
+            document.getElementById('mobilePercent').textContent = mobilePercent + '%';
+
+            // Top events
+            const eventCounts = {};
+            data.events.forEach(event => {
+                eventCounts[event.event] = (eventCounts[event.event] || 0) + 1;
+            });
+            const topEvents = Object.entries(eventCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            const topEventsHtml = topEvents.length > 0
+                ? topEvents.map(([name, count]) => `
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid #e5e5e5;">
+                        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 0.875rem;">${name}</span>
+                        <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 700;">${count}</span>
+                    </div>
+                `).join('')
+                : '<p style="color: #666; font-style: italic;">No events yet</p>';
+            document.getElementById('topEvents').innerHTML = topEventsHtml;
+
+            // Recent events
+            const recentEvents = [...data.events].reverse().slice(0, 20);
+            const recentEventsHtml = recentEvents.length > 0
+                ? recentEvents.map(event => `
+                    <div class="event-item">
+                        <div class="event-name">${event.event}</div>
+                        <div class="event-time">${new Date(event.timestamp).toLocaleString()}</div>
+                    </div>
+                `).join('')
+                : '<p style="color: #666; font-style: italic; padding: 1rem;">No events tracked yet</p>';
+            document.getElementById('recentEvents').innerHTML = recentEventsHtml;
+
+            // Referrers
+            const referrerCounts = {};
+            data.pageViews.forEach(pv => {
+                const ref = pv.referrer || 'direct';
+                referrerCounts[ref] = (referrerCounts[ref] || 0) + 1;
+            });
+            const topReferrers = Object.entries(referrerCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            const referrersHtml = topReferrers.map(([ref, count]) => `
+                <div style="display: flex; justify-content: space-between; padding: 0.5rem; border-bottom: 1px solid #e5e5e5;">
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-size: 0.875rem; word-break: break-all;">${ref}</span>
+                    <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 700; margin-left: 1rem;">${count}</span>
+                </div>
+            `).join('');
+            document.getElementById('referrerList').innerHTML = referrersHtml;
+        }
+
+        function exportStats() {
+            const data = window.Vote08Analytics.exportData();
+            const dataStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vote08-analytics-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+        }
+
+        function clearStats() {
+            if (confirm('Are you sure you want to clear all analytics data? This cannot be undone.')) {
+                window.Vote08Analytics.clearData();
+                refreshStats();
+            }
+        }
+
+        // Initial load
+        refreshStats();
+
+        // Auto-refresh every 5 seconds
+        setInterval(refreshStats, 5000);
+    </script>
+</body>
+</html>
