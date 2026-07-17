@@ -199,6 +199,7 @@ function setActiveLocation(locationId) {
     activeLocationId = locationId;
 
     // Update active state in list
+    const activeItem = document.querySelector(`.location-item[data-location-id="${locationId}"]`);
     document.querySelectorAll('.location-item').forEach(item => {
         if (item.getAttribute('data-location-id') === locationId) {
             item.classList.add('active');
@@ -207,11 +208,31 @@ function setActiveLocation(locationId) {
         }
     });
 
+    // Scroll active item to top of sidebar list
+    if (activeItem) {
+        const sidebar = document.querySelector('.locations-list');
+        if (sidebar) {
+            // Scroll so the active item is at the top
+            const itemTop = activeItem.offsetTop;
+            sidebar.scrollTo({
+                top: itemTop - sidebar.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    }
+
     // Find and trigger marker
     const markerData = markers.find(m => m.id === locationId);
     const location = locationsData.find(loc => loc.id === locationId);
 
     if (markerData && location) {
+        // Close all other popups first
+        markers.forEach(m => {
+            if (m.id !== locationId && m.marker.getPopup().isOpen()) {
+                m.marker.togglePopup();
+            }
+        });
+
         // Pan to marker
         map.flyTo({
             center: [location.lng, location.lat],
@@ -219,8 +240,10 @@ function setActiveLocation(locationId) {
             duration: 1000
         });
 
-        // Open popup
-        markerData.marker.togglePopup();
+        // Open this popup (force it open, don't toggle)
+        if (!markerData.marker.getPopup().isOpen()) {
+            markerData.marker.togglePopup();
+        }
     }
 }
 
