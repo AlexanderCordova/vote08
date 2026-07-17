@@ -1,0 +1,97 @@
+{
+  "locations": [
+    {
+      "id": "alexandria-voter-reg",
+      "name": "Alexandria Voter Registration Office",
+      "address": "132 N Royal St, Suite 100, Alexandria, VA 22314",
+      "county": "City of Alexandria",
+      "hours": [
+        "Mon-Fri: 8am-5pm",
+        "Sun, July 19 & 26: 11am-4pm",
+        "Sat, July 25: 8am-5pm",
+        "Tue, July 28: 8am-7pm",
+        "Sat, Aug 1 (last day): 8am-5pm"
+      ],
+      "lat": 38.8048,
+      "lng": -77.0434,
+      "notes": "Main early voting location for Alexandria"
+    },
+    {
+      "id": "beatley-library",
+      "name": "Charles E. Beatley Jr. Central Library",
+      "address": "5005 Duke St, Alexandria, VA 22304",
+      "county": "City of Alexandria",
+      "hours": [
+        "Sun, July 19 & 26: 11am-4pm",
+        "Sat, July 25 & Aug 1: 9am-5pm"
+      ],
+      "lat": 38.8121,
+      "lng": -77.1281,
+      "notes": "Weekend early voting location"
+    },
+    {
+      "id": "fairfax-gov-center",
+      "name": "Fairfax County Government Center",
+      "address": "12000 Government Center Pkwy, Fairfax, VA 22035",
+      "county": "Fairfax County",
+      "hours": [
+        "Mon-Fri: 8am-4:30pm",
+        "Sun, July 19 & 26: 12pm-5pm",
+        "Sat, July 25 & Aug 1: 9am-5pm"
+      ],
+      "lat": 38.8513,
+      "lng": -77.2767,
+      "notes": "Main Fairfax County early voting location"
+    },
+    {
+      "id": "mount-vernon-gov",
+      "name": "Mount Vernon Governmental Center",
+      "address": "2511 Parkers Ln, Alexandria, VA 22306",
+      "county": "Fairfax County",
+      "hours": [
+        "Mon-Fri: 1pm-7pm",
+        "Sun, July 19 & 26: 12pm-5pm",
+        "Sat, July 25 & Aug 1: 9am-5pm"
+      ],
+      "lat": 38.7582,
+      "lng": -77.0976,
+      "notes": "Fairfax County location in VA-08"
+    },
+    {
+      "id": "north-county-gov",
+      "name": "North County Governmental Center",
+      "address": "1801 Cameron Glen Dr, Reston, VA 20190",
+      "county": "Fairfax County",
+      "hours": [
+        "Mon-Fri: 1pm-7pm",
+        "Sun, July 19 & 26: 12pm-5pm",
+        "Sat, July 25 & Aug 1: 9am-5pm"
+      ],
+      "lat": 38.9586,
+      "lng": -77.3553,
+      "notes": "Northern Fairfax County location"
+    },
+    {
+      "id": "arlington-courthouse",
+      "name": "Arlington Courthouse Plaza",
+      "address": "2100 Clarendon Blvd, Suite 320, Arlington, VA 22201",
+      "county": "Arlington County",
+      "hours": [
+        "Mon-Fri: 8am-5pm",
+        "Extended hours on select weekends (check vote.arlingtonva.gov)"
+      ],
+      "lat": 38.8880,
+      "lng": -77.0982,
+      "notes": "Main Arlington County early voting location"
+    }
+  ],
+  "metadata": {
+    "election_name": "Virginia 8th Congressional District Democratic Primary",
+    "election_date": "2026-08-04",
+    "registration_deadline": "2026-07-24",
+    "absentee_deadline": "2026-07-24T17:00:00",
+    "early_voting_start": "2026-06-18",
+    "early_voting_end": "2026-08-01T17:00:00",
+    "source": "Verified against elections.virginia.gov, alexandriava.gov, fairfaxcounty.gov, and vote.arlingtonva.gov on 2026-07-16"
+  }
+}
