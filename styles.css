@@ -485,9 +485,27 @@ button {
 }
 
 .info-card {
+    display: block;
     padding: var(--space-8);
     border: 2px solid var(--black);
     background: var(--white);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.info-card:hover {
+    background: var(--black);
+    color: var(--white);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--black);
+}
+
+.info-card:hover p {
+    color: var(--gray-300);
+}
+
+.info-card:hover .info-link-text {
+    color: var(--white);
 }
 
 .info-number {
@@ -506,18 +524,15 @@ button {
     color: var(--gray-700);
     line-height: 1.6;
     margin-bottom: var(--space-4);
+    transition: color 0.2s;
 }
 
-.info-link {
+.info-link-text {
     font-family: var(--font-mono);
     font-size: 0.875rem;
     font-weight: 600;
-    text-decoration: underline;
-    transition: opacity 0.2s;
-}
-
-.info-link:hover {
-    opacity: 0.6;
+    color: var(--black);
+    transition: color 0.2s;
 }
 
 @media (max-width: 768px) {
@@ -585,6 +600,29 @@ button {
     color: var(--black);
     transform: translate(-2px, -2px);
     box-shadow: 4px 4px 0 var(--black);
+}
+
+.qr-container {
+    margin-bottom: var(--space-4);
+}
+
+.qr-placeholder {
+    padding: var(--space-8);
+    background: var(--gray-100);
+    border: 2px dashed var(--gray-300);
+    text-align: center;
+}
+
+.qr-placeholder p {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--gray-700);
+    margin-bottom: var(--space-2);
+}
+
+.qr-instructions {
+    font-size: 0.75rem;
+    color: var(--gray-700);
 }
 
 @media (max-width: 768px) {
