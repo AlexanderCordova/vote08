@@ -240,10 +240,16 @@ function setActiveLocation(locationId) {
             duration: 1000
         });
 
-        // Open this popup (force it open, don't toggle)
-        if (!markerData.marker.getPopup().isOpen()) {
+        // Always open this popup (never close it on re-click)
+        const popup = markerData.marker.getPopup();
+        if (!popup.isOpen()) {
             markerData.marker.togglePopup();
         }
+
+        // Keep location active in sidebar even when popup closes
+        popup.on('close', () => {
+            // Don't remove active state - keep it highlighted
+        });
     }
 }
 
@@ -331,6 +337,47 @@ function initPathCards() {
 // =====================================
 
 function initShareFeatures() {
+    // Check if QR code exists, show placeholder if not
+    const qrImage = document.getElementById('qrImage');
+    const qrContainer = document.getElementById('qrContainer');
+    const qrPlaceholder = document.getElementById('qrPlaceholder');
+
+    if (qrImage) {
+        qrImage.onerror = () => {
+            if (qrContainer) qrContainer.style.display = 'none';
+            if (qrPlaceholder) qrPlaceholder.style.display = 'block';
+        };
+
+        qrImage.onload = () => {
+            if (qrContainer) qrContainer.style.display = 'block';
+            if (qrPlaceholder) qrPlaceholder.style.display = 'none';
+        };
+    }
+
+    // Copy QR code image
+    const copyQrBtn = document.getElementById('copyQrBtn');
+    if (copyQrBtn && qrImage) {
+        copyQrBtn.addEventListener('click', async () => {
+            try {
+                const response = await fetch(qrImage.src);
+                const blob = await response.blob();
+                await navigator.clipboard.write([
+                    new ClipboardItem({ [blob.type]: blob })
+                ]);
+                copyQrBtn.textContent = 'COPIED!';
+                setTimeout(() => {
+                    copyQrBtn.textContent = 'COPY IMAGE';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy image:', err);
+                copyQrBtn.textContent = 'FAILED';
+                setTimeout(() => {
+                    copyQrBtn.textContent = 'COPY IMAGE';
+                }, 2000);
+            }
+        });
+    }
+
     // Generate "I'm Voting" Card
     const generateBtn = document.getElementById('generateCardBtn');
     if (generateBtn) {
@@ -343,9 +390,9 @@ function initShareFeatures() {
         copyLinkBtn.addEventListener('click', () => {
             const link = window.location.href;
             navigator.clipboard.writeText(link).then(() => {
-                copyLinkBtn.textContent = 'Copied!';
+                copyLinkBtn.textContent = 'COPIED!';
                 setTimeout(() => {
-                    copyLinkBtn.textContent = 'Copy Link';
+                    copyLinkBtn.textContent = 'COPY LINK';
                 }, 2000);
             });
         });
@@ -357,9 +404,9 @@ function initShareFeatures() {
         copyToolkitBtn.addEventListener('click', () => {
             const message = document.getElementById('toolkitMessage').innerText;
             navigator.clipboard.writeText(message).then(() => {
-                copyToolkitBtn.textContent = 'Copied!';
+                copyToolkitBtn.textContent = 'COPIED!';
                 setTimeout(() => {
-                    copyToolkitBtn.textContent = 'Copy Message';
+                    copyToolkitBtn.textContent = 'COPY MESSAGE';
                 }, 2000);
             });
         });

@@ -167,13 +167,16 @@
             <div class="share-grid">
                 <div class="share-card">
                     <div class="share-label">QR CODE</div>
-                    <div class="qr-container">
-                        <div class="qr-placeholder">
-                            <p>Generate QR code after creating short link</p>
-                            <p class="qr-instructions">1. Create short link at tinyurl.com</p>
-                            <p class="qr-instructions">2. Generate QR at qr-code-generator.com</p>
-                            <p class="qr-instructions">3. Save to assets/qr-code.png</p>
+                    <div class="qr-container" id="qrContainer">
+                        <img src="assets/qr-code.png" alt="QR code for vote08.vercel.app" class="qr-image" id="qrImage" style="max-width: 250px; margin-bottom: 1rem; border: 2px solid #000;">
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <a href="assets/qr-code.png" download="vote08-qr-code.png" class="share-button">DOWNLOAD QR</a>
+                            <button class="share-button" id="copyQrBtn">COPY IMAGE</button>
                         </div>
+                    </div>
+                    <div class="qr-placeholder" id="qrPlaceholder" style="display: none;">
+                        <p>QR code not found</p>
+                        <p class="qr-instructions">Add qr-code.png to assets folder</p>
                     </div>
                 </div>
 
