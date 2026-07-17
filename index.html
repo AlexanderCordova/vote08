@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Complete voting information for Virginia's 8th Congressional District Democratic Primary on August 4, 2026. Find early voting locations, check registration, and request absentee ballots.">
-    <meta name="keywords" content="VA-08, Virginia 8th district, Democratic primary, August 2026, voter registration, early voting, absentee ballot">
-    <title>How to Vote: VA-08 Democratic Primary | August 4, 2026</title>
+    <title>VA-08 Democratic Primary | August 4, 2026</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- MapLibre GL JS -->
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css">
@@ -18,134 +17,138 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
-
-    <!-- Umami Analytics (will be configured after deployment) -->
-    <!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR_WEBSITE_ID"></script> -->
 </head>
 <body>
-    <!-- Hero Section -->
-    <header class="hero">
+    <!-- Header -->
+    <header class="site-header">
         <div class="container">
-            <h1 class="hero-title">How to Vote in the<br>VA-08 Democratic Primary</h1>
-            <p class="hero-date">Tuesday, August 4, 2026</p>
-            <p class="hero-subtitle">Voting information for Arlington County, City of Alexandria, City of Falls Church, and eastern Fairfax County</p>
+            <div class="header-grid">
+                <div class="header-label">
+                    <span class="form-number">VA-08</span>
+                    <span class="form-title">VOTING INFORMATION</span>
+                </div>
+                <div class="header-date">
+                    <span class="date-label">PRIMARY ELECTION</span>
+                    <time class="date-value" datetime="2026-08-04">AUG 04, 2026</time>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Deadline Tracker -->
-    <section class="deadline-tracker" id="deadlines">
+    <!-- Deadline Banner -->
+    <section class="deadline-banner">
         <div class="container">
-            <div class="ballot-stub">
-                <div class="stub-header">
-                    <span class="stub-label">IMPORTANT DATES</span>
-                    <div class="countdown" id="countdown"></div>
+            <div class="deadline-grid">
+                <div class="deadline-item">
+                    <div class="deadline-label">VOTER REGISTRATION</div>
+                    <div class="deadline-value">JULY 24, 2026</div>
+                    <div class="deadline-note">Same-day registration available through Election Day</div>
                 </div>
-                <div class="perforated-line"></div>
-                <div class="deadlines-grid">
-                    <div class="deadline-item">
-                        <span class="deadline-label">Voter Registration</span>
-                        <span class="deadline-date">July 24, 2026</span>
-                        <span class="deadline-note">Same-day registration available after deadline</span>
-                    </div>
-                    <div class="deadline-item">
-                        <span class="deadline-label">Absentee Ballot Request</span>
-                        <span class="deadline-date">July 24, 2026, 5:00 PM</span>
-                    </div>
-                    <div class="deadline-item">
-                        <span class="deadline-label">Early Voting Period</span>
-                        <span class="deadline-date">June 18 – August 1, 2026</span>
-                    </div>
-                    <div class="deadline-item highlight">
-                        <span class="deadline-label">Election Day</span>
-                        <span class="deadline-date">August 4, 2026</span>
-                    </div>
+                <div class="deadline-item">
+                    <div class="deadline-label">ABSENTEE BALLOT REQUEST</div>
+                    <div class="deadline-value">JULY 24, 2026 / 5:00 PM</div>
+                </div>
+                <div class="deadline-item">
+                    <div class="deadline-label">EARLY VOTING PERIOD</div>
+                    <div class="deadline-value">JUNE 18 – AUG 01, 2026</div>
+                </div>
+                <div class="deadline-item primary">
+                    <div class="deadline-label">ELECTION DAY</div>
+                    <div class="deadline-value">AUGUST 4, 2026</div>
+                    <div class="countdown-timer" id="countdown"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Voter Path Selection -->
-    <section class="voter-path">
+    <!-- Actions Section -->
+    <section class="actions-section">
         <div class="container">
-            <h2>Choose Your Voting Path</h2>
-            <div class="path-cards">
-                <div class="path-card" id="path-away">
-                    <h3>I'll be away from my VA-08 address</h3>
-                    <p>Request an absentee ballot to vote by mail</p>
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                </div>
-                <div class="path-card" id="path-in-person">
-                    <h3>I'll be at my VA-08 address</h3>
-                    <p>Vote early or on Election Day</p>
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
-                    </svg>
-                </div>
+            <div class="section-header">
+                <h2>REQUIRED ACTIONS</h2>
             </div>
-        </div>
-    </section>
 
-    <!-- Action Buttons -->
-    <section class="action-buttons" id="actions">
-        <div class="container">
-            <h2>Essential Actions</h2>
             <div class="actions-grid">
                 <a href="https://www.vote.org/am-i-registered-to-vote/"
-                   class="action-btn"
+                   class="action-card"
                    target="_blank"
                    rel="noopener noreferrer"
                    data-umami-event="check-registration">
-                    <div class="action-icon">✓</div>
-                    <div class="action-text">
-                        <h3>Check Registration Status</h3>
-                        <p>Confirm you're registered to vote in VA-08</p>
+                    <div class="action-number">01</div>
+                    <div class="action-content">
+                        <h3>Verify Registration</h3>
+                        <p>Confirm your voter registration status for VA-08</p>
                     </div>
                 </a>
+
                 <a href="https://www.vote.org/absentee-ballot/virginia/"
-                   class="action-btn"
+                   class="action-card"
                    target="_blank"
                    rel="noopener noreferrer"
                    data-umami-event="request-absentee">
-                    <div class="action-icon">✉</div>
-                    <div class="action-text">
+                    <div class="action-number">02</div>
+                    <div class="action-content">
                         <h3>Request Absentee Ballot</h3>
-                        <p>Vote by mail if you'll be away</p>
+                        <p>Vote by mail if away from your registered address</p>
                     </div>
                 </a>
+
                 <a href="https://www.elections.virginia.gov/citizen-portal/"
-                   class="action-btn"
+                   class="action-card"
                    target="_blank"
                    rel="noopener noreferrer"
                    data-umami-event="register-vote">
-                    <div class="action-icon">📝</div>
-                    <div class="action-text">
+                    <div class="action-number">03</div>
+                    <div class="action-content">
                         <h3>Register to Vote</h3>
-                        <p>Register online through Virginia's portal</p>
+                        <p>Complete registration through Virginia Citizen Portal</p>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Map & Locations -->
-    <section class="map-section" id="locations">
+    <!-- Voting Locations -->
+    <section class="locations-section" id="locations">
         <div class="container">
-            <h2>Early Voting & Election Day Locations</h2>
-            <p class="section-subtitle">All VA-08 early voting locations. Click markers for details.</p>
+            <div class="section-header">
+                <h2>EARLY VOTING LOCATIONS</h2>
+                <p class="section-desc">All locations in Arlington County, City of Alexandria, and Fairfax County (VA-08 portion)</p>
+            </div>
 
-            <div class="map-container">
-                <div id="map" class="map"></div>
-                <div class="locations-list" id="locationsList">
-                    <div class="locations-header">
-                        <h3>All Locations</h3>
-                        <p class="locations-count" id="locationsCount">Loading...</p>
+            <div class="locations-layout">
+                <div class="map-container">
+                    <div id="map" class="map"></div>
+                </div>
+
+                <div class="locations-sidebar">
+                    <div class="sidebar-header">
+                        <div class="location-count" id="locationsCount">LOADING...</div>
                     </div>
-                    <div class="locations-items" id="locationsItems">
+                    <div class="locations-list" id="locationsItems">
                         <!-- Populated by JavaScript -->
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-number">A</div>
+                    <h3>Voting Away from Home</h3>
+                    <p>College students and residents temporarily away from their VA-08 address can request an absentee ballot. No excuse required. Request deadline: July 24, 2026, 5:00 PM.</p>
+                    <a href="https://www.vote.org/absentee-ballot/virginia/" target="_blank" rel="noopener" class="info-link">Request Absentee Ballot</a>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-number">B</div>
+                    <h3>Voting in Person</h3>
+                    <p>Early voting: June 18 – August 1 at locations above. Election Day: August 4, 6:00 AM – 7:00 PM at your assigned polling place. Bring valid ID or voter registration card.</p>
+                    <a href="https://vote.elections.virginia.gov/VoterInformation/Lookup/polling" target="_blank" rel="noopener" class="info-link">Find Polling Place</a>
                 </div>
             </div>
         </div>
@@ -154,87 +157,71 @@
     <!-- Share Section -->
     <section class="share-section" id="share">
         <div class="container">
-            <h2>Share This Tool</h2>
-            <p class="section-subtitle">Help other VA-08 voters find this information</p>
+            <div class="section-header">
+                <h2>DISTRIBUTION RESOURCES</h2>
+            </div>
 
             <div class="share-grid">
                 <div class="share-card">
-                    <h3>Generate "I'm Voting" Card</h3>
-                    <p>Create a shareable graphic for social media</p>
-                    <button class="btn-primary" id="generateCardBtn">Generate Card</button>
-                    <canvas id="shareCanvas" style="display:none;"></canvas>
-                    <div id="cardPreview" style="display:none;">
-                        <img id="cardImage" alt="I'm voting share card">
-                        <a id="downloadCardBtn" class="btn-secondary" download="va08-voting.png">Download Image</a>
-                    </div>
+                    <div class="share-label">SHAREABLE LINK</div>
+                    <div class="share-url">vote08.vercel.app</div>
+                    <button class="share-button" id="copyLinkBtn">COPY LINK</button>
                 </div>
 
                 <div class="share-card">
-                    <h3>QR Code & Short Link</h3>
-                    <p>For flyers, canvassing materials, and easy sharing</p>
-                    <div class="qr-placeholder" id="qrCode">
-                        <p>QR code will be generated after deployment</p>
-                        <p class="short-link" id="shortLink">vote08.vercel.app</p>
+                    <div class="share-label">DISTRIBUTION MESSAGE</div>
+                    <div class="share-message" id="toolkitMessage">
+                        VA-08 voters: Complete voting information for the August 4 Democratic primary at vote08.vercel.app — check registration, find early voting locations, request absentee ballots.
                     </div>
-                    <button class="btn-secondary" id="copyLinkBtn">Copy Link</button>
+                    <button class="share-button" id="copyToolkitBtn">COPY MESSAGE</button>
                 </div>
-            </div>
-
-            <div class="toolkit-section">
-                <h3>For Organizations & Campaigns</h3>
-                <p>Feel free to share this tool with your networks. Copy the message below:</p>
-                <div class="toolkit-message" id="toolkitMessage">
-                    <p><strong>🗳️ VA-08 voters:</strong> Need to know how to vote in the August 4 Democratic primary? Check your registration, find early voting locations, and request an absentee ballot at <span class="link-placeholder">vote08.vercel.app</span></p>
-                    <p>Whether you're a college student away for the summer or voting locally, this tool has everything you need.</p>
-                </div>
-                <button class="btn-secondary" id="copyToolkitBtn">Copy Message</button>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="site-footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-section">
-                    <h4>About This Tool</h4>
-                    <p>This is a student/volunteer-built, nonpartisan voting resource for Virginia's 8th Congressional District. We are not affiliated with any campaign or candidate.</p>
-                    <p>For official information, always refer to the <a href="https://www.elections.virginia.gov/" target="_blank" rel="noopener">Virginia Department of Elections</a>.</p>
+                    <div class="footer-label">DISCLAIMER</div>
+                    <p>Nonpartisan voter resource. Not affiliated with any campaign or candidate. For official information, refer to the Virginia Department of Elections.</p>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Official Resources</h4>
+                    <div class="footer-label">OFFICIAL RESOURCES</div>
                     <ul class="footer-links">
                         <li><a href="https://www.elections.virginia.gov/" target="_blank" rel="noopener">Virginia Dept. of Elections</a></li>
-                        <li><a href="https://www.alexandriava.gov/Elections" target="_blank" rel="noopener">Alexandria Voter Registration</a></li>
+                        <li><a href="https://www.alexandriava.gov/Elections" target="_blank" rel="noopener">Alexandria Elections</a></li>
                         <li><a href="https://www.fairfaxcounty.gov/elections/" target="_blank" rel="noopener">Fairfax County Elections</a></li>
-                        <li><a href="https://vote.arlingtonva.gov/" target="_blank" rel="noopener">Arlington County Voting</a></li>
+                        <li><a href="https://vote.arlingtonva.gov/" target="_blank" rel="noopener">Arlington County Elections</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h4>Tools We Use</h4>
-                    <p>Voter registration and absentee ballot tools provided by <a href="https://www.vote.org/" target="_blank" rel="noopener">Vote.org</a>, a nonpartisan nonprofit.</p>
-                    <p>Map data from <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a> contributors.</p>
+                    <div class="footer-label">DATA SOURCES</div>
+                    <p>Voter registration tools: Vote.org (nonpartisan nonprofit)</p>
+                    <p>Map data: OpenStreetMap contributors</p>
+                    <p>Last verified: July 16, 2026</p>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>Last updated: July 16, 2026 | <a href="https://github.com/AlexanderCordova/vote08" target="_blank" rel="noopener">View Source on GitHub</a></p>
-                <p class="privacy-note">This site uses privacy-respecting analytics (no personal data collected) to understand reach and improve the tool.</p>
+                <a href="https://github.com/AlexanderCordova/vote08" target="_blank" rel="noopener">View Source on GitHub</a>
             </div>
         </div>
     </footer>
 
-    <!-- Modal for voter paths -->
+    <!-- Modal -->
     <div id="pathModal" class="modal">
         <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div id="modalBody">
-                <!-- Content populated by JavaScript -->
-            </div>
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <div id="modalBody"></div>
         </div>
     </div>
+
+    <!-- Hidden canvas for share card generation -->
+    <canvas id="shareCanvas" style="display:none;"></canvas>
 
     <script src="script.js"></script>
 </body>

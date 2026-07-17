@@ -1,24 +1,12 @@
-<svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Drop shadow -->
-  <defs>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
-    </filter>
-  </defs>
+<svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pin drop shape -->
+  <path d="M16 0C9.373 0 4 5.373 4 12C4 20 16 40 16 40C16 40 28 20 28 12C28 5.373 22.627 0 16 0Z"
+        fill="#000000"/>
 
-  <!-- Pin shape -->
-  <path d="M20 0C12.268 0 6 6.268 6 14C6 23.5 20 48 20 48C20 48 34 23.5 34 14C34 6.268 27.732 0 20 0Z"
-        fill="#1B2A4A" filter="url(#shadow)"/>
+  <!-- Inner circle -->
+  <circle cx="16" cy="12" r="6" fill="#FFFFFF"/>
 
-  <!-- Ballot box icon inside pin -->
-  <g transform="translate(11, 8)">
-    <!-- Box outline -->
-    <rect x="1" y="5" width="16" height="13" rx="1" fill="#FAF9F6" stroke="#C9A227" stroke-width="1.5"/>
-
-    <!-- Slot at top -->
-    <rect x="5" y="3" width="8" height="3" rx="0.5" fill="#FAF9F6" stroke="#C9A227" stroke-width="1.5"/>
-
-    <!-- Check mark -->
-    <path d="M6 12L8.5 14.5L12 9" stroke="#C9A227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  </g>
+  <!-- Ballot box mark -->
+  <rect x="13" y="9" width="6" height="6" fill="#000000"/>
+  <path d="M13 11L14.5 12.5L17 10" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

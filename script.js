@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initMap();
     initPathCards();
     initShareFeatures();
-    loadLocations();
 });
 
 // =====================================
@@ -69,39 +68,18 @@ function initMap() {
     try {
         map = new maplibregl.Map({
             container: 'map',
-            style: {
-                version: 8,
-                sources: {
-                    'openmaptiles': {
-                        type: 'raster',
-                        tiles: [
-                            'https://tiles.openfreemap.org/styles/liberty/{z}/{x}/{y}.png'
-                        ],
-                        tileSize: 256,
-                        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    }
-                },
-                layers: [
-                    {
-                        id: 'background',
-                        type: 'background',
-                        paint: {
-                            'background-color': '#faf9f6'
-                        }
-                    },
-                    {
-                        id: 'openmaptiles',
-                        type: 'raster',
-                        source: 'openmaptiles'
-                    }
-                ]
-            },
+            style: 'https://tiles.openfreemap.org/styles/liberty',
             center: CONFIG.mapCenter,
             zoom: CONFIG.mapZoom
         });
 
         // Add navigation controls
         map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+        // Load locations after map is ready
+        map.on('load', () => {
+            loadLocations();
+        });
 
     } catch (error) {
         console.error('Error initializing map:', error);
@@ -120,12 +98,8 @@ async function loadLocations() {
         const data = await response.json();
         locationsData = data.locations;
 
-        // Wait for map to load before adding markers
-        if (map) {
-            map.on('load', () => {
-                addMarkersToMap();
-            });
-        }
+        // Add markers to map (map is already loaded)
+        addMarkersToMap();
 
         // Populate location list
         populateLocationsList();
@@ -133,7 +107,7 @@ async function loadLocations() {
     } catch (error) {
         console.error('Error loading locations:', error);
         document.getElementById('locationsItems').innerHTML =
-            '<p style="color: #9B9B9B; padding: 1rem;">Could not load locations. Please refresh the page.</p>';
+            '<p style="color: #666; padding: 1rem;">Could not load locations. Please refresh the page.</p>';
     }
 }
 
@@ -474,6 +448,5 @@ function updateShortLink(newLink) {
 }
 
 // Console message for developers
-console.log('%cVA-08 Voting Tool', 'font-size: 24px; font-weight: bold; color: #1B2A4A;');
-console.log('%cNonpartisan voter resource | Built with ❤️ by students & volunteers', 'font-size: 14px; color: #C9A227;');
-console.log('%cView source: https://github.com/AlexanderCordova/vote08', 'font-size: 12px; color: #9B9B9B;');
+console.log('%cVA-08 Voting Tool', 'font-size: 24px; font-weight: bold; color: #000;');
+console.log('%cNonpartisan voter resource | View source: https://github.com/AlexanderCordova/vote08', 'font-size: 12px; color: #666;');
